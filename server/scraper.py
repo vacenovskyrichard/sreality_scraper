@@ -50,14 +50,15 @@ class FlatScraper:
         start_urls = ["https://www.sreality.cz/hledani/prodej/byty/"]
 
         #   each page has 20 records and we want 500 of them
-        # for i in range(1, int(500 / 20)):
-        for i in range(1, 3):
+        for i in range(1, int(500 / 20)):
             start_urls.append(
                 f"https://www.sreality.cz/hledani/prodej/byty/?strana={i}"
             )
 
+        process_page_index = 1
         for url in start_urls:
-            print(f"============== Stránka: {url} ==============")
+            print(f"Progress page: {process_page_index}/{int(500/20)}")
+            process_page_index += 1
             if not self.open_chrome_with_url(url):
                 return False
 
@@ -119,10 +120,10 @@ class FlatScraper:
                     print("Failed to wait for price and locality.")
 
                 image_items = item.find_elements(By.TAG_NAME, "img")
-                print("price and locality")
-                print(title)
-                print(price)
-                print(locality)
+                # print("price and locality")
+                # print(title)
+                # print(price)
+                # print(locality)
 
                 images = []
                 for img in image_items:
@@ -136,7 +137,7 @@ class FlatScraper:
 if __name__ == "__main__":
     tm = FlatScraper()
     res = tm.scrapy_func()
-    for item in res:
-        print(item.name)
-        print(item.images)
-        print("--------------------------")
+    # for item in res:
+    #     print(item.name)
+    #     print(item.images)
+    #     print("--------------------------")
