@@ -1,0 +1,9 @@
+selenium
+webdriver_manager
+flask
+psycopg2-binary
+marshmallow-sqlalchemy
+Flask-Migrate
+Flask-SQLAlchemy
+Flask-Cors
+flask-marshmallow
