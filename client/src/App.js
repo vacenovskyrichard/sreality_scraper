@@ -53,7 +53,9 @@ function App() {
         })
       ) : (
         <>
-          <h3>Záznamy se stahují, může to trvat 1-2 minuty.</h3>
+          <h3>
+            Záznamy se stahují, bude to trvat cca 1-2 minuty. (max 5 minut)
+          </h3>
           <h3>Pro zkrácení čekání Vám zatím zatancuje tenhle fešák.</h3>
           <div
             style={{
