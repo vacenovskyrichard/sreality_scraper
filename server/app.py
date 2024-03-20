@@ -1,18 +1,11 @@
-import json
-from flask import Flask, jsonify, request, abort, session, Response
-import os
-import math
-from flask import Flask, render_template, request, url_for, redirect
+from flask import Flask, jsonify
 from flask_marshmallow import Marshmallow
 from flask_cors import CORS
-from datetime import date, datetime
-from datetime import datetime, timedelta, timezone
-from models import db, ObjectInfo, get_uuid, EventType, ObjectType
+from models import db, ObjectInfo, EventType, ObjectType
 from config import ApplicationConfig
 from flask_migrate import Migrate
 from scraper import FlatScraper
 from marshmallow import fields, validate
-from enum import Enum
 
 app = Flask(__name__)
 app.config.from_object(ApplicationConfig)
@@ -89,5 +82,4 @@ def get_data():
 
 
 if __name__ == "__main__":
-
     app.run(host="0.0.0.0", port=5000)
