@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
+import "./App.css";
 
 function App() {
   const [records, setRecords] = useState([]);
 
   // eslint-disable-next-line
-  const localhost = "http://127.0.0.1:3000";
+  const localhost = "http://127.0.0.1:5000";
 
   useEffect(() => {
     fetch(`${localhost}/get_data`, {
@@ -28,19 +29,54 @@ function App() {
 
   return (
     <div className="App">
-      <h1>First 500 records from sreality.cz</h1>
-      {records.map((record) => {
-        return (
-          <div>
-            <p>{record.object_type}</p>
-            <p>{record.event_type}</p>
-            <p>Struktura: {record.object_structure}</p>
-            <p>Rozloha: {record.area}</p>
-            <p>Cena: {record.price}</p>
-            <img src={record.image} alt={record.image} />
+      <h1>Prvních 500 záznamů z portálu sreality.cz</h1>
+
+      {records.length != 0 ? (
+        records.map((record) => {
+          return (
+            <div className="record">
+              <h2>Byt na prodej {record.object_structure}</h2>
+              <div className="recordContent">
+                <div className="recordText">
+                  <p>Rozloha: {record.area}</p>
+                  <p>Cena: {record.price}</p>
+                  <p>Lokalita: {record.locality}</p>
+                </div>
+                <img
+                  className="recordImg"
+                  src={record.image}
+                  alt={record.image}
+                />
+              </div>
+            </div>
+          );
+        })
+      ) : (
+        <>
+          <h3>Záznamy se stahují, může to trvat 1-2 minuty.</h3>
+          <h3>Pro zkrácení čekání Vám zatím zatancuje tenhle fešák.</h3>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "start",
+              height: "100vh",
+            }}
+          >
+            <img
+              alt="monkey"
+              src="./monkey.gif"
+              style={{
+                top: "20px",
+                width: "60%",
+                height: "auto",
+                margin: "50px",
+                borderRadius: "20px",
+              }}
+            />
           </div>
-        );
-      })}
+        </>
+      )}
     </div>
   );
 }

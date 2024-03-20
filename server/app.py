@@ -31,6 +31,7 @@ class FlatSchema(ma.Schema):
     image = fields.String()
     object_structure = fields.String()
     price = fields.String()
+    locality = fields.String()
 
     class Meta:
         fields = (
@@ -40,6 +41,7 @@ class FlatSchema(ma.Schema):
             "image",
             "object_structure",
             "price",
+            "locality",
         )
 
 
@@ -48,37 +50,37 @@ flats_schema = FlatSchema(many=True)
 
 
 @app.route("/get_data", methods=["GET"])
-def login():
+def get_data():
 
     # delete old records from database
-    # db.session.query(ObjectInfo).delete()
-    # db.session.commit()
+    db.session.query(ObjectInfo).delete()
+    db.session.commit()
 
-    # fs = FlatScraper()
-    # scraped_list = fs.scrapy_func()
+    fs = FlatScraper()
+    scraped_list = fs.scrapy_func()
 
-    # delimiters = [" ", "\xa0"]
-    # n_of_records = len(scraped_list)
-    # i = 1
-    # for item in scraped_list:
-    #     for delimiter in delimiters:
-    #         name = " ".join(item.name.split(delimiter))
-    #     print(f"Progress - Flat: {i}/{n_of_records}")
-    #     i += 1
-    #     event_type, object_type, object_structure, object_area, m2 = name.split()[:5]
+    delimiters = [" ", "\xa0"]
+    n_of_records = len(scraped_list)
+    i = 1
+    for item in scraped_list:
+        for delimiter in delimiters:
+            name = " ".join(item.name.split(delimiter))
+        print(f"Progress - Flat: {i}/{n_of_records}")
+        i += 1
+        event_type, object_type, object_structure, object_area, m2 = name.split()[:5]
 
-    #     db.session.add(
-    #         ObjectInfo(
-    #             object_type=ObjectType.FLAT,
-    #             event_type=EventType.SELL,
-    #             area=f"{object_area} {m2}",
-    #             image=item.images[0],
-    #             object_structure=object_structure,
-    #             price=item.price,
-    #             locality=item.locality,
-    #         )
-    #     )
-    # db.session.commit()
+        db.session.add(
+            ObjectInfo(
+                object_type=ObjectType.FLAT,
+                event_type=EventType.SELL,
+                area=f"{object_area} {m2}",
+                image=item.images[0],
+                object_structure=object_structure,
+                price=item.price,
+                locality=item.locality,
+            )
+        )
+    db.session.commit()
 
     all_records = ObjectInfo.query.all()
     results = flats_schema.dump(all_records)
@@ -87,4 +89,5 @@ def login():
 
 
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0", port=3000)
+
+    app.run(host="0.0.0.0", port=5000)

@@ -57,7 +57,7 @@ class FlatScraper:
 
         process_page_index = 1
         for url in start_urls:
-            print(f"Progress page: {process_page_index}/{int(500/20)}")
+            print(f"Progress - page: {process_page_index}/{int(500/20)}")
             process_page_index += 1
             if not self.open_chrome_with_url(url):
                 return False

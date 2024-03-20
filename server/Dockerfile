@@ -17,6 +17,6 @@ RUN apt-get update && apt-get install -y wget unzip && \
 
 COPY . .
 
-EXPOSE 8080
+EXPOSE 5000
 
 CMD ["python3", "app.py"]
