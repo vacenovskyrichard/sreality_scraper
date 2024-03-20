@@ -47,41 +47,55 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 50%;
+  width: 55%;
   margin: 50px 50px 0px 50px;
 }
 
 .recordContent {
   display: flex;
+  width: 100%;
+  justify-content: space-between;
 }
 
 .recordText {
   display: flex;
   flex-direction: column;
+  justify-content: left;
   margin-top: 10px;
-  margin-right: 30px;
+}
+
+.recordText > p {
+  display: flex;
+  font-size: 21px;
 }
 
 .recordImg {
   border-radius: 20px;
+  margin-left: 60px;
 }
 
 h1 {
-  font-size: 50px;
+  width: 55%;
+  font-size: 40px;
+  color: black;
+  padding: 10px 50px;
+  background-color: white;
+  border-radius: 15px;
 }
 
 h2 {
-  font-size: 30px;
+  font-size: 25px;
   width: 100%;
+  color: black;
+  padding: 10px;
+  background-color: white;
+  border-radius: 15px;
+  margin-top: 40px;
   margin-bottom: 40px;
 }
 
 h3 {
   font-style: italic;
   color: rgb(255, 0, 51);
-  font-size: 23px;
-}
-
-p {
-  font-size: 20px;
+  font-size: 19px;
 }
