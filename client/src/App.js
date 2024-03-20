@@ -68,8 +68,7 @@ function App() {
               src="./monkey.gif"
               style={{
                 top: "20px",
-                width: "60%",
-                height: "auto",
+                height: "50vh",
                 margin: "50px",
                 borderRadius: "20px",
               }}
